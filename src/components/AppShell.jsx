@@ -2,7 +2,7 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 
 import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router-dom";
-import Tabs from "../Tabs";
+import Tabs from "./Tabs";
 
 setupIonicReact({});
 
