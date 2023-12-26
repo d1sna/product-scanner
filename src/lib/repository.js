@@ -18,6 +18,12 @@ class Repository {
   async getProducts() {
     return await mongoose.connection.db.collection("products").find().toArray();
   }
+
+  async getProductById(id) {
+    return await mongoose.connection.db
+      .collection("products")
+      .findOne({ _id: id });
+  }
 }
 
 const repository = await Repository.init(

@@ -9,19 +9,23 @@ import {
   IonContent,
   IonMenuButton,
 } from "@ionic/react";
+import Router from "next/router";
 import { useEffect, useState } from "react";
 
 const Item = ({ _id, name, description, price }) => (
-  <div className="bg-white shadow-md rounded-b-xl dark:bg-black my-1">
+  <div
+    className="bg-white shadow-md rounded-b-xl dark:bg-black my-2"
+    onClick={() => Router.push(`/tabs/products/${_id}`)}
+  >
     <div className="h-32 w-full relative">
       <img
         className="rounded-t-xl object-cover min-w-full min-h-full max-w-full max-h-full"
-        src={`/${_id}`}
+        src={`/${_id}.jpg`}
         alt=""
       />
     </div>
     <div className="px-4 py-4 bg-white rounded-b-xl dark:bg-gray-900">
-      <h2 className="font-bold text-2xl text-gray-800 dark:text-gray-100">
+      <h2 className="font-bold text-xl uppercase text-gray-800 dark:text-gray-100">
         {name}
       </h2>
       <p className="sm:text-sm text-s text-gray-500 mr-1 my-3 dark:text-gray-400">
@@ -63,7 +67,7 @@ const Products = () => {
 
         {store.map((product) => (
           <Item
-            _id={`${product._id}.jpg`}
+            _id={`${product._id}`}
             name={product.name}
             description={product.description}
             price={product.price}
