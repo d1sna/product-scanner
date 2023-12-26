@@ -6,6 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "sync": "npm run build && npx cap sync",
+    "ios": "npx cap open ios",
+    "android": "npx cap open android",
     "lint": "next lint"
   },
   "dependencies": {
@@ -23,12 +26,14 @@
     "@types/react-router-dom": "^5.1.7",
     "axios": "^1.6.2",
     "formidable-serverless": "^1.1.1",
+    "mongoose": "^8.0.3",
     "next": "^13.2.4",
     "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^5.3.4",
-    "react-router-dom": "^5.3.4"
+    "react-router-dom": "^5.3.4",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@capacitor/cli": "^4.0.0",

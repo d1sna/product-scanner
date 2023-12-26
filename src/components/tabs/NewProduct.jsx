@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import httpClient from "@/lib/htttpClient";
 import {
   IonPage,
   IonHeader,
@@ -12,7 +13,9 @@ import {
   IonInput,
   IonTextarea,
   IonButton,
+  IonIcon,
 } from "@ionic/react";
+import { cloudUpload } from "ionicons/icons";
 import { useState } from "react";
 
 const NewProduct = () => {
@@ -28,7 +31,7 @@ const NewProduct = () => {
       reader.onload = () => {
         setImage(reader.result);
       };
-      // reader.readAsDataURL(file);
+      reader.readAsDataURL(file);
     }
   };
 
@@ -36,13 +39,21 @@ const NewProduct = () => {
     document.getElementById("file-upload").click();
   };
 
+  const clearAll = () => {
+    setName("");
+    setDescription("");
+    setPrice("");
+    setImage(null);
+  };
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonTitle>New Product</IonTitle>
-          <IonButtons slot="start">
+          <IonButtons slot="end">
             <IonMenuButton />
+            <IonButton onClick={clearAll}>Clear all</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
@@ -54,8 +65,34 @@ const NewProduct = () => {
         </IonHeader>
 
         <IonItem>
+          <IonLabel position="stacked">Product Image</IonLabel>
+          <div className="flex flex-col justify-center items-center w-full my-2">
+            <input
+              type="file"
+              id="file-upload"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleChangeImage}
+            />
+
+            {image && (
+              <img
+                src={image}
+                alt="uploaded-image"
+                className="rounded-xl mb-2"
+              />
+            )}
+
+            <IonButton onClick={openFileDialog}>
+              <IonIcon icon={cloudUpload}></IonIcon>
+            </IonButton>
+          </div>
+        </IonItem>
+
+        <IonItem>
           <IonInput
             label="Product name"
+            required
             labelPlacement="stacked"
             onIonChange={(e) => setName(e.target.value)}
             value={name}
@@ -88,31 +125,20 @@ const NewProduct = () => {
           />
         </IonItem>
 
-        <IonItem>
-          <IonLabel position="stacked">Product Image</IonLabel>
-          <div className="flex flex-col justify-center items-center w-full my-2">
-            <input
-              type="file"
-              id="file-upload"
-              accept="image/*"
-              style={{ display: "none" }}
-              onChange={handleChangeImage}
-            />
-            {image && (
-              <img src={image} alt="uploaded-image" className="rounded-xl" />
-            )}
-
-            {!image && (
-              <IonButton onClick={openFileDialog}>Upload image</IonButton>
-            )}
-          </div>
-        </IonItem>
-
         <IonButton
           expand="block"
           size="default"
-          color="success"
           disabled={!name || !description || !price || !image}
+          className="mt-2"
+          onClick={async () => {
+            await httpClient.createProduct({
+              image,
+              name,
+              description,
+              price,
+            });
+            clearAll();
+          }}
         >
           Create
         </IonButton>
