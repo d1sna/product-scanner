@@ -18,6 +18,7 @@ import {
 } from "@ionic/react";
 import { cloudUpload } from "ionicons/icons";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const NewProduct = () => {
   const [name, setName] = useState("");
@@ -45,6 +46,7 @@ const NewProduct = () => {
     setDescription("");
     setPrice("");
     setImage(null);
+    toast.success("Cleared");
   };
 
   return (
@@ -53,7 +55,7 @@ const NewProduct = () => {
         <IonToolbar>
           <IonTitle>New Product</IonTitle>
           <IonButtons slot="start">
-          <IonBackButton defaultHref="/tabs/products" />
+            <IonBackButton defaultHref="/tabs/products" />
           </IonButtons>
           <IonButtons slot="end">
             <IonMenuButton />
@@ -135,13 +137,18 @@ const NewProduct = () => {
           disabled={!name || !description || !price || !image}
           className="mt-2"
           onClick={async () => {
-            await httpClient.createProduct({
-              image,
-              name,
-              description,
-              price,
-            });
-            clearAll();
+            try {
+              await httpClient.createProduct({
+                image,
+                name,
+                description,
+                price,
+              });
+              clearAll();
+              toast.success("Product successfully created!");
+            } catch (error) {
+              toast.error("Error while creating product :( try again later");
+            }
           }}
         >
           Create

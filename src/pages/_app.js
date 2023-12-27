@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Script from "next/script";
-import { setupIonicReact } from "@ionic/react";
 
 import "tailwindcss/tailwind.css";
 /* Core CSS required for Ionic components to work properly */
@@ -22,6 +21,9 @@ import "@ionic/react/css/display.css";
 import "../styles/globals.css";
 import "../styles/variables.css";
 
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -33,6 +35,13 @@ function MyApp({ Component, pageProps }) {
       </Head>
 
       <Component {...pageProps} />
+      <ToastContainer
+        position="top-right"
+        autoClose={500}
+        toastClassName={() =>
+          `relative flex p-2 m-2 min-h-10 rounded-md justify-between cursor-pointer my-1 rounded-xl shadow-md bg-gray-900 bg-opacity-10 mt-20 text-black dark:bg-opacity-50 dark:text-white`
+        }
+      />
 
       <Script
         type="module"
