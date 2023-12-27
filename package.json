@@ -8,7 +8,6 @@
     "start": "next start",
     "sync": "npm run build && npx cap sync",
     "ios": "npx cap open ios",
-    "android": "npx cap open android",
     "lint": "next lint"
   },
   "dependencies": {
