@@ -8,19 +8,22 @@ import {
   IonButtons,
   IonContent,
   IonMenuButton,
+  useIonViewWillEnter,
 } from "@ionic/react";
 import Router from "next/router";
 import { useEffect, useState } from "react";
 
-const Item = ({ _id, name, description, price }) => (
+const Item = ({ productId, name, description, price }) => (
   <div
     className="bg-white shadow-md rounded-b-xl dark:bg-black my-2"
-    onClick={() => Router.push(`/tabs/products/${_id}`)}
+    onClick={() => {
+      Router.push(`/products/${productId}`);
+    }}
   >
     <div className="h-32 w-full relative">
       <img
         className="rounded-t-xl object-cover min-w-full min-h-full max-w-full max-h-full"
-        src={`/${_id}.jpg`}
+        src={`/${productId}.jpg`}
         alt=""
       />
     </div>
@@ -38,6 +41,11 @@ const Item = ({ _id, name, description, price }) => (
 
 const Products = () => {
   const [store, setStore] = useState([]);
+
+  useIonViewWillEnter(async () => {
+    const result = await httpClient.getProducts();
+    setStore(result);
+  });
 
   useEffect(() => {
     const getStore = async () => {
@@ -67,7 +75,7 @@ const Products = () => {
 
         {store.map((product) => (
           <Item
-            _id={`${product._id}`}
+            productId={`${product.productId}`}
             name={product.name}
             description={product.description}
             price={product.price}

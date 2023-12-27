@@ -11,31 +11,16 @@ import { add, list, scan } from "ionicons/icons";
 import Products from "./tabs/Products";
 import NewProduct from "./tabs/NewProduct";
 import ScanQrCode from "./tabs/ScanQrCode";
-import { ProductCard } from "./tabs/ProductCard";
 
 const Tabs = () => {
   return (
     <IonTabs>
       <IonRouterOutlet>
         <Route path="/tabs/products" render={() => <Products />} exact={true} />
-        <Route
-          path="/tabs/products/:productId"
-          render={() => <ProductCard />}
-          exact={true}
-        />
-        <Route
-          path="/tabs/new-product"
-          render={() => <NewProduct />}
-          exact={true}
-        />
-        <Route path="/tabs/camera" render={() => <ScanQrCode />} exact={true} />
-        <Route
-          path="/tabs"
-          render={() => <Redirect to="/tabs/products" />}
-          exact={true}
-        />
+        <Route path="/tabs/new-product" component={NewProduct} exact={true} />
+        <Route path="/tabs/camera" component={ScanQrCode} exact={true} />
+        <Redirect exact from="/" to="/tabs/products" />
       </IonRouterOutlet>
-
       <IonTabBar slot="bottom">
         <IonTabButton tab="tab1" href="/tabs/products">
           <IonIcon icon={list} />

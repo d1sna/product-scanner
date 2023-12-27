@@ -12,17 +12,20 @@ class Repository {
   async createProduct({ name, description, price, productId }) {
     return await mongoose.connection.db
       .collection("products")
-      .insertOne({ name, description, price, _id: productId });
+      .insertOne({ name, description, price, productId });
   }
 
   async getProducts() {
-    return await mongoose.connection.db.collection("products").find().toArray();
+    return await mongoose.connection.db
+      .collection("products")
+      .find({}, { sort: { _id: -1 } })
+      .toArray();
   }
 
   async getProductById(id) {
     return await mongoose.connection.db
       .collection("products")
-      .findOne({ _id: id });
+      .findOne({ productId: id });
   }
 }
 

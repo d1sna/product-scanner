@@ -14,6 +14,7 @@ import {
   IonTextarea,
   IonButton,
   IonIcon,
+  IonBackButton,
 } from "@ionic/react";
 import { cloudUpload } from "ionicons/icons";
 import { useState } from "react";
@@ -51,6 +52,9 @@ const NewProduct = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>New Product</IonTitle>
+          <IonButtons slot="start">
+          <IonBackButton defaultHref="/tabs/products" />
+          </IonButtons>
           <IonButtons slot="end">
             <IonMenuButton />
             <IonButton onClick={clearAll}>Clear all</IonButton>
