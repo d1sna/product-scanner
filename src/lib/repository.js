@@ -29,7 +29,5 @@ class Repository {
   }
 }
 
-const repository = await Repository.init(
-  "mongodb://your_root_username:your_root_password@localhost:27017"
-);
+const repository = await Repository.init(process.env.MONGODB_URI);
 export default repository;
