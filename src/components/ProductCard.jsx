@@ -5,12 +5,15 @@ import {
   IonTitle,
   IonButtons,
   IonContent,
-  IonBackButton,
   IonImg,
+  IonButton,
+  IonIcon,
 } from "@ionic/react";
 import QRCodeGenerator from "./QrCodeGenerator";
 import { useEffect, useState } from "react";
 import httpClient from "@/lib/htttpClient";
+import { chevronBack } from "ionicons/icons";
+import Router from "next/router";
 
 export const ProductCard = ({ productId }) => {
   const [product, setProduct] = useState({});
@@ -30,13 +33,15 @@ export const ProductCard = ({ productId }) => {
         <IonToolbar>
           <IonTitle>Product Info</IonTitle>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/tabs/products" />
+            <IonButton onClick={() => Router.push("/")}>
+              <IonIcon icon={chevronBack} />
+            </IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         {!!product && (
-          <div className="flex justify-between items-center flex-col rounded-lg mb-2 border-gray-100 dark:bg-gray-800 font-sans bg-gray-50">
+          <div className="flex justify-between items-center flex-col rounded-lg mb-5 pb-2 border-gray-100 dark:bg-gray-800 font-sans bg-gray-50">
             <IonImg src={product.imageUrl} alt="product-image" />
 
             <div className="text-4xl font-bold text-center ml-5">
@@ -58,6 +63,8 @@ export const ProductCard = ({ productId }) => {
               <div className="text-center mb-2">QR Code:</div>
               <QRCodeGenerator qrCodeValue={productId} />
             </div>
+
+            <IonButton>Share</IonButton>
           </div>
         )}
       </IonContent>

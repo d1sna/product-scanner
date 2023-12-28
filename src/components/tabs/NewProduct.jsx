@@ -6,17 +6,15 @@ import {
   IonTitle,
   IonButtons,
   IonContent,
-  IonMenuButton,
   IonItem,
   IonLabel,
   IonInput,
   IonTextarea,
   IonButton,
   IonIcon,
-  IonBackButton,
+  IonImg,
 } from "@ionic/react";
-import { cloudUpload } from "ionicons/icons";
-import Image from "next/image";
+import { cloudUpload, refresh } from "ionicons/icons";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -53,23 +51,20 @@ const NewProduct = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>New Product</IonTitle>
-          <IonButtons slot="start">
-            <IonBackButton defaultHref="/tabs/products" />
-          </IonButtons>
+          <IonButtons slot="start"></IonButtons>
           <IonButtons slot="end">
-            <IonMenuButton />
             <IonButton
               onClick={() => {
                 clearAll();
                 toast.success("Cleared :)");
               }}
             >
-              Clear all
+              <IonIcon icon={refresh} />
             </IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding" fullscreen>
+      <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">New Product</IonTitle>
@@ -88,7 +83,7 @@ const NewProduct = () => {
             />
 
             {image && (
-              <Image
+              <IonImg
                 src={image}
                 alt="uploaded-image"
                 className="rounded-xl mb-2"
