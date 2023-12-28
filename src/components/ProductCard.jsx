@@ -6,11 +6,11 @@ import {
   IonButtons,
   IonContent,
   IonBackButton,
+  IonImg,
 } from "@ionic/react";
-import QRCodeGenerator from "../QrCodeGenerator";
+import QRCodeGenerator from "./QrCodeGenerator";
 import { useEffect, useState } from "react";
 import httpClient from "@/lib/htttpClient";
-import Image from "next/image";
 
 export const ProductCard = ({ productId }) => {
   const [product, setProduct] = useState({});
@@ -34,16 +34,10 @@ export const ProductCard = ({ productId }) => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
+      <IonContent fullscreen>
         {!!product && (
           <div className="flex justify-between items-center flex-col rounded-lg mb-2 border-gray-100 dark:bg-gray-800 font-sans bg-gray-50">
-            <Image
-              src={product.imageUrl}
-              alt="product-image"
-              className="h-80 my-2 rounded-md w-[70%]"
-              width={100}
-              height={200}
-            ></Image>
+            <IonImg src={product.imageUrl} alt="product-image" />
 
             <div className="text-4xl font-bold text-center ml-5">
               {product.price} $

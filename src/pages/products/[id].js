@@ -1,4 +1,4 @@
-import { ProductCard } from "@/components/tabs/ProductCard";
+import { ProductCard } from "@/components/ProductCard";
 import { useRouter } from "next/router";
 
 export default function Product() {
