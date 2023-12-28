@@ -10,7 +10,7 @@ Install mongodb (optionally):
 
 `docker compose up -d`
 
-Change .env file if you have your own mongodb connection string
+Change .env file if you have your own mongodb connection string or s3 cloud
 
 Copy your local ip to capacitor.config.ts => server => url
 
