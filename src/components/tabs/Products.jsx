@@ -42,7 +42,7 @@ const Products = () => {
           slot="fixed"
           onIonRefresh={(event) => {
             setManualFetchTrigger(!manualFetchTrigger);
-            event.detail.complete();
+            setTimeout(() => event.detail.complete(), 1000);
           }}
         >
           <IonRefresherContent></IonRefresherContent>

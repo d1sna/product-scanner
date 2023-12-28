@@ -63,8 +63,6 @@ export const ProductCard = ({ productId }) => {
               <div className="text-center mb-2">QR Code:</div>
               <QRCodeGenerator qrCodeValue={productId} />
             </div>
-
-            <IonButton>Share</IonButton>
           </div>
         )}
       </IonContent>
