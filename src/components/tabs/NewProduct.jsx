@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import httpClient from "@/lib/htttpClient";
 import {
   IonPage,
@@ -17,6 +16,7 @@ import {
   IonBackButton,
 } from "@ionic/react";
 import { cloudUpload } from "ionicons/icons";
+import Image from "next/image";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -88,10 +88,12 @@ const NewProduct = () => {
             />
 
             {image && (
-              <img
+              <Image
                 src={image}
                 alt="uploaded-image"
                 className="rounded-xl mb-2"
+                width={200}
+                height={200}
               />
             )}
 

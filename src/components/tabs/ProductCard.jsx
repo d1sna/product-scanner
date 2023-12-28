@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import {
   IonPage,
   IonHeader,
@@ -11,6 +10,7 @@ import {
 import QRCodeGenerator from "../QrCodeGenerator";
 import { useEffect, useState } from "react";
 import httpClient from "@/lib/htttpClient";
+import Image from "next/image";
 
 export const ProductCard = ({ productId }) => {
   const [product, setProduct] = useState({});
@@ -37,11 +37,13 @@ export const ProductCard = ({ productId }) => {
       <IonContent className="ion-padding">
         {!!product && (
           <div className="flex justify-between items-center flex-col rounded-lg mb-2 border-gray-100 dark:bg-gray-800 font-sans bg-gray-50">
-            <img
+            <Image
               src={product.imageUrl}
               alt="product-image"
               className="h-80 my-2 rounded-md w-[70%]"
-            ></img>
+              width={100}
+              height={200}
+            ></Image>
 
             <div className="text-4xl font-bold text-center ml-5">
               {product.price} $

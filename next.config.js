@@ -4,7 +4,12 @@ module.exports = {
   basePath: "",
   swcMinify: true,
   images: {
-    domains: ["http://127.0.0.1"],
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "**",
+      },
+    ],
   },
   transpilePackages: [
     "@ionic/react",

@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import httpClient from "@/lib/htttpClient";
 import {
   IonPage,
@@ -8,6 +7,7 @@ import {
   IonContent,
   useIonViewWillEnter,
 } from "@ionic/react";
+import Image from "next/image";
 import Router from "next/router";
 import { useEffect, useState } from "react";
 
@@ -19,10 +19,12 @@ const Item = ({ productId, name, description, price, imageUrl }) => (
     }}
   >
     <div className="h-44 w-full relative">
-      <img
+      <Image
         className="rounded-t-xl object-cover min-w-full min-h-full max-w-full max-h-full"
         src={imageUrl}
         alt=""
+        width={100}
+        height={200}
       />
     </div>
     <div className="px-3 py-1 bg-white rounded-b-xl dark:bg-gray-800">
