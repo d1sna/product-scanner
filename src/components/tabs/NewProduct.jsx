@@ -46,7 +46,6 @@ const NewProduct = () => {
     setDescription("");
     setPrice("");
     setImage(null);
-    toast.success("Cleared");
   };
 
   return (
@@ -59,7 +58,14 @@ const NewProduct = () => {
           </IonButtons>
           <IonButtons slot="end">
             <IonMenuButton />
-            <IonButton onClick={clearAll}>Clear all</IonButton>
+            <IonButton
+              onClick={() => {
+                clearAll();
+                toast.success("Cleared :)");
+              }}
+            >
+              Clear all
+            </IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>

@@ -41,7 +41,7 @@ export const ProductCard = ({ productId }) => {
               {product.name}
             </div>
             <img
-              src={`/${productId}.jpg`}
+              src={product.imageUrl}
               alt="product-image"
               className="rounded-xl m-2 px-1"
             ></img>

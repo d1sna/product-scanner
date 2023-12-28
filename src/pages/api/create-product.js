@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
 import formidable from "formidable-serverless";
-import saveFileFromForm from "@/lib/saveFileFromForm";
 import repository from "@/lib/repository";
 
 const createProduct = async (req, res) => {
@@ -12,11 +11,15 @@ const createProduct = async (req, res) => {
   const form = new formidable.IncomingForm();
   form.parse(req, async (err, fields, files) => {
     const productId = uuidv4();
-    const filePath = `public/${productId}.jpg`;
-    await saveFileFromForm(fields.file, filePath);
 
-    const { name, description, price } = fields;
-    await repository.createProduct({ name, description, price, productId });
+    const { name, description, price, file } = fields;
+    await repository.createProduct({
+      name,
+      description,
+      price,
+      productId,
+      file,
+    });
   });
 
   res.status(200).json({ success: true });

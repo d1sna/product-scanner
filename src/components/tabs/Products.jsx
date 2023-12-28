@@ -13,7 +13,7 @@ import {
 import Router from "next/router";
 import { useEffect, useState } from "react";
 
-const Item = ({ productId, name, description, price }) => (
+const Item = ({ productId, name, description, price, imageUrl }) => (
   <div
     className="bg-white shadow-md rounded-b-xl dark:bg-black my-2"
     onClick={() => {
@@ -23,7 +23,7 @@ const Item = ({ productId, name, description, price }) => (
     <div className="h-32 w-full relative">
       <img
         className="rounded-t-xl object-cover min-w-full min-h-full max-w-full max-h-full"
-        src={`/${productId}.jpg`}
+        src={imageUrl}
         alt=""
       />
     </div>
@@ -79,6 +79,7 @@ const Products = () => {
             name={product.name}
             description={product.description}
             price={product.price}
+            imageUrl={product.imageUrl}
             key={product._id}
           />
         ))}
