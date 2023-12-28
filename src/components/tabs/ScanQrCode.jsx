@@ -30,6 +30,9 @@ const ScanQrCode = () => {
         }
 
         setIsStarted(true);
+        await BarcodeScanner.hideBackground();
+        document.body.style.background = "transparent";
+
         const result = await BarcodeScanner.startScan();
         if (result.hasContent) {
           setIsStarted(false);
