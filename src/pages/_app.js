@@ -35,11 +35,13 @@ function MyApp({ Component, pageProps }) {
       </Head>
 
       <Component {...pageProps} />
+
       <ToastContainer
-        position="top-right"
-        autoClose={500}
+        position="top-center"
+        autoClose={300}
+        hideProgressBar
         toastClassName={() =>
-          `relative flex p-2 m-2 min-h-10 rounded-md justify-between cursor-pointer my-1 rounded-xl shadow-md bg-gray-900 bg-opacity-10 mt-20 text-black dark:bg-opacity-50 dark:text-white`
+          `relative flex p-2 m-2 min-h-10 rounded-md justify-between cursor-pointer my-1 rounded-xl shadow-md bg-gray-50 mt-20 text-black`
         }
       />
 

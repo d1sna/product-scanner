@@ -5,9 +5,7 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
-  IonButtons,
   IonContent,
-  IonMenuButton,
   useIonViewWillEnter,
 } from "@ionic/react";
 import Router from "next/router";
@@ -15,26 +13,29 @@ import { useEffect, useState } from "react";
 
 const Item = ({ productId, name, description, price, imageUrl }) => (
   <div
-    className="bg-white shadow-md rounded-b-xl dark:bg-black my-2"
+    className="bg-white shadow-lg rounded-b-xl dark:bg-black my-2"
     onClick={() => {
       Router.push(`/products/${productId}`);
     }}
   >
-    <div className="h-32 w-full relative">
+    <div className="h-44 w-full relative">
       <img
         className="rounded-t-xl object-cover min-w-full min-h-full max-w-full max-h-full"
         src={imageUrl}
         alt=""
       />
     </div>
-    <div className="px-4 py-4 bg-white rounded-b-xl dark:bg-gray-900">
-      <h2 className="font-bold text-xl uppercase text-gray-800 dark:text-gray-100">
-        {name}
-      </h2>
-      <p className="sm:text-sm text-s text-gray-500 mr-1 my-3 dark:text-gray-400">
+    <div className="px-3 py-1 bg-white rounded-b-xl dark:bg-gray-800">
+      <div className="flex justify-between items-center text-xl">
+        <div className="font-bold uppercase text-gray-800 dark:text-gray-100">
+          {name}
+        </div>
+        <div className="font-bold uppercase">{price} $</div>
+      </div>
+
+      <p className="sm:text-sm text-s text-gray-500 mr-1 my-1 dark:text-gray-400">
         {description}
       </p>
-      <p>{price} $</p>
     </div>
   </div>
 );
@@ -61,9 +62,6 @@ const Products = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>Products</IonTitle>
-          <IonButtons slot="start">
-            <IonMenuButton />
-          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding" fullscreen>

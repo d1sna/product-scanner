@@ -95,7 +95,7 @@ const NewProduct = () => {
               />
             )}
 
-            <IonButton onClick={openFileDialog}>
+            <IonButton onClick={openFileDialog} className="shadow-lg">
               <IonIcon icon={cloudUpload}></IonIcon>
             </IonButton>
           </div>
@@ -141,7 +141,7 @@ const NewProduct = () => {
           expand="block"
           size="default"
           disabled={!name || !description || !price || !image}
-          className="mt-2"
+          className="mt-2 shadow-lg"
           onClick={async () => {
             try {
               await httpClient.createProduct({

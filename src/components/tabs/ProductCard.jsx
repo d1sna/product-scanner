@@ -28,33 +28,37 @@ export const ProductCard = ({ productId }) => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Product {productId}</IonTitle>
+          <IonTitle>Product Info</IonTitle>
           <IonButtons slot="start">
             <IonBackButton defaultHref="/tabs/products" />
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding" fullscreen>
+      <IonContent className="ion-padding">
         {!!product && (
-          <div className="flex justify-between items-center flex-col shadow-lg rounded-lg mb-2 border-gray-100 dark:bg-gray-800">
-            <div className=" text-4xl uppercase my-2 border-b dark:border-gray-600 w-full text-center">
-              {product.name}
-            </div>
+          <div className="flex justify-between items-center flex-col rounded-lg mb-2 border-gray-100 dark:bg-gray-800 font-sans bg-gray-50">
             <img
               src={product.imageUrl}
               alt="product-image"
-              className="rounded-xl m-2 px-1"
+              className="h-80 my-2 rounded-md w-[70%]"
             ></img>
-            <div className="w-full border-t dark:border-gray-600"></div>
-            <div className="p-5 my-2 w-[80%] rounded-xl bg-green-100 dark:bg-green-400">
-              <div>Price:</div>
-              <div>{product.price} $</div>
+
+            <div className="text-4xl font-bold text-center ml-5">
+              {product.price} $
             </div>
-            <div className="text-md bg-gray-100 p-5 my-2 w-[80%] rounded-xl dark:bg-gray-600">
-              <div>Description:</div>
-              <div>{product.description}</div>
+
+            <div className=" text-xl uppercase font-bold text-center my-2 border-b dark:border-gray-600 w-full ml-5">
+              {product.name}
             </div>
-            <div className="my-2 p-5 rounded-lg">
+
+            <div className="text-xl p-5 w-full">
+              <div className="text-2xl font-bold text-center uppercase">
+                Description
+              </div>
+              <div className="text-center">{product.description}</div>
+            </div>
+
+            <div className="my-2 p-5 border-t dark:border-gray-600 w-full flex flex-col items-center">
               <div className="text-center mb-2">QR Code:</div>
               <QRCodeGenerator qrCodeValue={productId} />
             </div>
