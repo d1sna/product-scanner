@@ -6,16 +6,21 @@ Product Scanner
 
 To run the application, follow these steps:
 
-Install mongodb (optionally):
+Up mongodb and S3 store (optionally):
 
 `docker compose up -d`
 
 Change .env file if you have your own mongodb connection string or s3 cloud
 
 Copy your local ip to capacitor.config.ts => server => url
+
 Copy your local ip to .env => MINIO_END_POINT
 
 `ifconfig en0 inet`
+
+Install dependencies:
+
+`npm install`
 
 Sync application:
 
