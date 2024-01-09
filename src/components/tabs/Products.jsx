@@ -13,6 +13,7 @@ import {
   IonRefresher,
   IonRefresherContent,
 } from "@ionic/react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Router from "next/router";
 import { useEffect, useState } from "react";
@@ -20,6 +21,7 @@ import { useEffect, useState } from "react";
 const Products = () => {
   const [store, setStore] = useState([]);
   const [manualFetchTrigger, setManualFetchTrigger] = useState(false);
+  const { data: session } = useSession();
 
   useEffect(() => {
     const getStore = async () => {
@@ -54,27 +56,28 @@ const Products = () => {
           </IonToolbar>
         </IonHeader>
 
-        {store.map((product) => (
-          <IonCard
-            key={product._id}
-            onClick={() => Router.push(`/products/${product.productId}`)}
-          >
-            <Image
-              alt="Silhouette of mountains"
-              src={product.imageUrl}
-              className="w-full h-36 object-cover"
-              width={100}
-              height={50}
-            />
+        {session &&
+          store.map((product) => (
+            <IonCard
+              key={product._id}
+              onClick={() => Router.push(`/products/${product.productId}`)}
+            >
+              <Image
+                alt="Silhouette of mountains"
+                src={product.imageUrl}
+                className="w-full h-36 object-cover"
+                width={100}
+                height={50}
+              />
 
-            <IonCardHeader>
-              <IonCardTitle>{product.name}</IonCardTitle>
-              <IonCardSubtitle>{product.price} $</IonCardSubtitle>
-            </IonCardHeader>
+              <IonCardHeader>
+                <IonCardTitle>{product.name}</IonCardTitle>
+                <IonCardSubtitle>{product.price} $</IonCardSubtitle>
+              </IonCardHeader>
 
-            <IonCardContent>{product.description}</IonCardContent>
-          </IonCard>
-        ))}
+              <IonCardContent>{product.description}</IonCardContent>
+            </IonCard>
+          ))}
       </IonContent>
     </IonPage>
   );
