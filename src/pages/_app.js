@@ -33,6 +33,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
           name="viewport"
           content="width=device-width, initial-scale=1.0, viewport-fit=cover"
         ></meta>
+        <meta
+          name="google-signin-client_id"
+          content="609052745817-nf0g3195cvdgrpahvfa9s119r1hkopbj.apps.googleusercontent.com"
+        ></meta>
       </Head>
 
       <SessionProvider session={session}>

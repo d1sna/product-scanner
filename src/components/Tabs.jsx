@@ -7,24 +7,20 @@ import {
   IonIcon,
   IonLabel,
 } from "@ionic/react";
-import { add, list, scan } from "ionicons/icons";
+import { add, list, person, scan } from "ionicons/icons";
 import Products from "./tabs/Products";
 import NewProduct from "./tabs/NewProduct";
 import ScanQrCode from "./tabs/ScanQrCode";
-import { useSession } from "next-auth/react";
-import LoginButton from "./LoginButton";
+import User from "./tabs/User";
 
 const Tabs = () => {
-  const { data: sesion } = useSession();
-
-  if (!sesion) return <LoginButton />;
-
   return (
     <IonTabs>
       <IonRouterOutlet>
         <Route path="/tabs/products" render={() => <Products />} exact={true} />
         <Route path="/tabs/new-product" component={NewProduct} exact={true} />
         <Route path="/tabs/camera" component={ScanQrCode} exact={true} />
+        <Route path="/tabs/user" component={User} exact={true} />
         <Redirect exact from="/" to="/tabs/products" />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
@@ -39,6 +35,10 @@ const Tabs = () => {
         <IonTabButton tab="tab3" href="/tabs/camera">
           <IonIcon icon={scan} />
           <IonLabel>Scan QR-code</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="tab4" href="/tabs/user">
+          <IonIcon icon={person} />
+          <IonLabel>User</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>
