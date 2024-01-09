@@ -23,8 +23,9 @@ import "../styles/variables.css";
 
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { SessionProvider } from "next-auth/react";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <>
       <Head>
@@ -34,7 +35,9 @@ function MyApp({ Component, pageProps }) {
         ></meta>
       </Head>
 
-      <Component {...pageProps} />
+      <SessionProvider session={session}>
+        <Component {...pageProps} />
+      </SessionProvider>
 
       <ToastContainer
         position="top-center"

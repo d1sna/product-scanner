@@ -11,8 +11,14 @@ import { add, list, scan } from "ionicons/icons";
 import Products from "./tabs/Products";
 import NewProduct from "./tabs/NewProduct";
 import ScanQrCode from "./tabs/ScanQrCode";
+import { useSession } from "next-auth/react";
+import LoginButton from "./LoginButton";
 
 const Tabs = () => {
+  const { data: sesion } = useSession();
+
+  if (!sesion) return <LoginButton />;
+
   return (
     <IonTabs>
       <IonRouterOutlet>
