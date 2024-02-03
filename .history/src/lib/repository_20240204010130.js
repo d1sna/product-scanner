@@ -49,7 +49,12 @@ class Repository {
   }
 
   async getProductById(id) {
-    return await this.collection.findOne({ productId: id });
+    const document = await this.collection.findOne({ productId: id });
+
+    if (!document) throw new Error("404");
+
+    const imageUrl = await this.getProductImageUrl(document.productId);
+    return { ...document, imageUrl };
   }
 
   async uploadFileToMinIO(buffer, productId) {

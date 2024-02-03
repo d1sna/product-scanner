@@ -61,8 +61,8 @@ const Products = () => {
             onClick={() => Router.push(`/products/${product.productId}`)}
           >
             <Image
-              alt="product"
-              src={`${process.env.NEXT_PUBLIC_URL}/${product.productId}.jpg`}
+              alt="Silhouette of mountains"
+              src={`${process.env.PUBLIC_URL}/${product.productId}.jpg`}
               className="w-full h-36 object-cover"
               width={100}
               height={50}

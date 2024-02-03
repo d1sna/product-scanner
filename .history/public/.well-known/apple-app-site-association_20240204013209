@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "2XM5RH2HDL.initeumscanner",
+        "paths": ["NOT /api/*", "*"]
+      },
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "2XM5RH2HDL.art.chikoroko.ios", "2XM5RH2HDL.app.artoys"
+    ]
+  }
+}

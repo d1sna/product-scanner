@@ -1,0 +1,11 @@
+[
+    {
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target": {
+        "namespace": "android_app",
+        "package_name": "art.chikoroko.app",
+        "sha256_cert_fingerprints":
+            ["D9:F0:F2:AC:7C:1C:1C:8A:4E:92:E3:39:1A:99:C9:17:82:C7:60:DD:13:55:5E:04:2D:A3:35:AC:47:3F:04:85"]
+        }
+    }
+]

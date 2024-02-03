@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import * as Minio from "minio";
 import saveFileFromForm from "./saveFileFromForm";
 
 class Repository {
@@ -12,18 +13,18 @@ class Repository {
     const collection = mongoose.connection?.db.collection("products");
     if (!collection) await mongoose.connection.createCollection("products");
 
-    // const s3 = new Minio.Client({
-    //   endPoint: process.env.MINIO_END_POINT,
-    //   port: Number(process.env.MINIO_PORT),
-    //   useSSL: false,
-    //   accessKey: process.env.MINIO_ACCESS_KEY,
-    //   secretKey: process.env.MINIO_SECRET_KEY,
-    // });
+    const s3 = new Minio.Client({
+      endPoint: process.env.MINIO_END_POINT,
+      port: Number(process.env.MINIO_PORT),
+      useSSL: false,
+      accessKey: process.env.MINIO_ACCESS_KEY,
+      secretKey: process.env.MINIO_SECRET_KEY,
+    });
 
-    // const bucketExists = await s3.bucketExists("images");
-    // if (!bucketExists) await s3.makeBucket("images", "georgia");
+    const bucketExists = await s3.bucketExists("images");
+    if (!bucketExists) await s3.makeBucket("images", "georgia");
 
-    return new Repository(null, collection);
+    return new Repository(s3, collection);
   }
 
   async createProduct({ name, description, price, productId, file }) {
@@ -43,13 +44,26 @@ class Repository {
   }
 
   async getProducts() {
-    return await this.collection
+    const documents = await this.collection
       .find({}, { sort: { _id: -1 } })
       .toArray();
+
+    const products = [];
+    for (const document of documents) {
+      const imageUrl = await this.getProductImageUrl(document.productId);
+      products.push({ ...document, imageUrl });
+    }
+
+    return products;
   }
 
   async getProductById(id) {
-    return await this.collection.findOne({ productId: id });
+    const document = await this.collection.findOne({ productId: id });
+
+    if (!document) throw new Error("404");
+
+    const imageUrl = await this.getProductImageUrl(document.productId);
+    return { ...document, imageUrl };
   }
 
   async uploadFileToMinIO(buffer, productId) {

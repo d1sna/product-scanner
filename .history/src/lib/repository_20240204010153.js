@@ -50,6 +50,7 @@ class Repository {
 
   async getProductById(id) {
     return await this.collection.findOne({ productId: id });
+
   }
 
   async uploadFileToMinIO(buffer, productId) {

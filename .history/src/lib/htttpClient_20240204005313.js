@@ -7,17 +7,16 @@ class HttpClient {
     formData.set("name", name);
     formData.set("description", description);
     formData.set("price", price);
-    await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/create-product`, formData);
+    await axios.post(`${process.env.PUBLIC_URL}/api/create-product`, formData);
   }
 
   async getProducts() {
-    console.log(process.env.NEXT_PUBLIC_URL);
-    const result = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/get-products`);
+    const result = await axios.get("${process.env.PUBLIC_URL}/api/get-products");
     return result.data;
   }
 
   async getProductById(id) {
-    const result = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/get-product-by-id`, { id });
+    const result = await axios.post("${process.env.PUBLIC_URL}/api/get-product-by-id", { id });
     return result.data;
   }
 }

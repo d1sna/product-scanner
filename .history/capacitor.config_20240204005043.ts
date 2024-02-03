@@ -6,7 +6,7 @@ const config: CapacitorConfig = {
   webDir: "out",
   bundledWebRuntime: false,
   server: {
-    hostname: "scanner.initeum.tech",
+    url: "https://scanner.initeum.tech",
     cleartext: true,
   },
   plugins: {

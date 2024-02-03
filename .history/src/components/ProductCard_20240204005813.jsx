@@ -43,9 +43,9 @@ export const ProductCard = ({ productId }) => {
         {!!product && (
           <div className="flex justify-between items-center flex-col rounded-lg mb-5 pb-2 border-gray-100 dark:bg-gray-800 font-sans bg-gray-50">
             <Image
-              alt="product"
+              alt="Silhouette of mountains"
               src={`${process.env.NEXT_PUBLIC_URL}/${product.productId}.jpg`}
-              className="w-full h-36 object-contain"
+              className="w-full h-36 object-cover"
               width={100}
               height={50}
             />

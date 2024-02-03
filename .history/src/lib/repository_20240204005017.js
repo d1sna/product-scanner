@@ -43,13 +43,26 @@ class Repository {
   }
 
   async getProducts() {
-    return await this.collection
+    const documents = await this.collection
       .find({}, { sort: { _id: -1 } })
       .toArray();
+
+    const products = [];
+    for (const document of documents) {
+      const imageUrl = await this.getProductImageUrl(document.productId);
+      products.push({ ...document, imageUrl });
+    }
+
+    return products;
   }
 
   async getProductById(id) {
-    return await this.collection.findOne({ productId: id });
+    const document = await this.collection.findOne({ productId: id });
+
+    if (!document) throw new Error("404");
+
+    const imageUrl = await this.getProductImageUrl(document.productId);
+    return { ...document, imageUrl };
   }
 
   async uploadFileToMinIO(buffer, productId) {

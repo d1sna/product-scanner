@@ -1,18 +1,19 @@
 import httpClient from "@/lib/htttpClient";
 import {
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonContent,
-  IonHeader,
   IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonCardContent,
   IonRefresher,
   IonRefresherContent,
-  IonTitle,
-  IonToolbar,
 } from "@ionic/react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Router from "next/router";
 import { useEffect, useState } from "react";
@@ -61,8 +62,8 @@ const Products = () => {
             onClick={() => Router.push(`/products/${product.productId}`)}
           >
             <Image
-              alt="product"
-              src={`${process.env.NEXT_PUBLIC_URL}/${product.productId}.jpg`}
+              alt="Silhouette of mountains"
+              src={`https://scanner.initeum.tech/${product.productId}.jpg`}
               className="w-full h-36 object-cover"
               width={100}
               height={50}

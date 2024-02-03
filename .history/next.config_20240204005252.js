@@ -4,7 +4,6 @@ module.exports = {
   basePath: "",
   swcMinify: true,
   images: {
-    unoptimized: true,
     domains: ['scanner.initeum.tech', '192.168.100.106'], 
   },
   async headers() {

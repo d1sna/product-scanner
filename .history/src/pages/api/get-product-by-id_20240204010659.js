@@ -1,9 +1,17 @@
 import repository from "@/lib/repository";
 
 export default async function getProductById(req, res) {
-  console.log(req.body.id)
+  if (req.method !== "POST") {
+    res.status(404);
+    return;
+  }
+
+  if (!req.body.id) {
+    res.status(400);
+    return;
+  }
+
   const product = await repository.getProductById(req.body.id);
-  console.log(product)
   res.send(product);
   return;
 }
