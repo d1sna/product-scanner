@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import httpClient from "@/lib/htttpClient";
 import { chevronBack } from "ionicons/icons";
 import Router from "next/router";
+import Image from "next/image";
 
 export const ProductCard = ({ productId }) => {
   const [product, setProduct] = useState({});
@@ -42,7 +43,13 @@ export const ProductCard = ({ productId }) => {
       <IonContent fullscreen>
         {!!product && (
           <div className="flex justify-between items-center flex-col rounded-lg mb-5 pb-2 border-gray-100 dark:bg-gray-800 font-sans bg-gray-50">
-            <IonImg src={product.imageUrl} alt="product-image" />
+            <Image
+              alt="Silhouette of mountains"
+              src={`https://scanner.initeum.tech/${product.productId}.jpg`}
+              className="w-full h-36 object-cover"
+              width={100}
+              height={50}
+            />
 
             <div className="text-4xl font-bold text-center ml-5">
               {product.price} $

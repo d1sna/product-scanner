@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import * as Minio from "minio";
+import saveFileFromForm from "./saveFileFromForm";
 
 class Repository {
   constructor(s3, collection) {
@@ -27,11 +28,13 @@ class Repository {
   }
 
   async createProduct({ name, description, price, productId, file }) {
-    const matches = file.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
-    const imageData = matches[2];
+    // const matches = file.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+    // const imageData = matches[2];
 
-    const buffer = Buffer.from(imageData, "base64");
-    await this.uploadFileToMinIO(buffer, productId);
+    // const buffer = Buffer.from(imageData, "base64");
+    // await this.uploadFileToMinIO(buffer, productId);
+
+    await saveFileFromForm(file, `public/${productId}.jpg`)
     return await this.collection.insertOne({
       name,
       description,

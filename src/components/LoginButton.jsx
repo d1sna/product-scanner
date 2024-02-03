@@ -4,6 +4,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function LoginButton() {
   const { data: session } = useSession();
+  const platform = Capacitor.getPlatform();
 
   if (session) {
     return (
@@ -12,8 +13,6 @@ export default function LoginButton() {
         <button
           className="bg-red-600 p-5 rounded-xl text-white mt-5"
           onClick={async () => {
-            const platform = Capacitor.getPlatform();
-
             if (platform === "web") signOut();
             else {
               await GoogleAuth.signOut();
@@ -33,21 +32,20 @@ export default function LoginButton() {
       <button
         className="bg-blue-600 p-5 rounded-xl text-white mt-5"
         onClick={async () => {
-          const platform = Capacitor.getPlatform();
+          // if (platform === "web") signIn();
+          // else {
+          // await GoogleAuth.initialize();
+          // const user = await GoogleAuth.signIn();
 
-          if (platform === "web") signIn();
-          else {
-            await GoogleAuth.initialize();
-            const user = await GoogleAuth.signIn();
-
-            if (user)
-              await signIn("google_manually_auth", {
-                redirect: false,
-                email: user.email,
-                image: user.imageUrl,
-                name: user.name,
-              });
-          }
+          // if (user)
+          await signIn("google_manually_auth", {
+            // redirect: false,
+            callbackUrl: url,
+            // email: user.email,
+            // image: user.imageUrl,
+            // name: user.name,
+          });
+          // }
         }}
       >
         Sign in

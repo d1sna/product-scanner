@@ -7,16 +7,16 @@ class HttpClient {
     formData.set("name", name);
     formData.set("description", description);
     formData.set("price", price);
-    await axios.post("/api/create-product", formData);
+    await axios.post(`https://scanner.initeum.tech/api/create-product`, formData);
   }
 
   async getProducts() {
-    const result = await axios.get("/api/get-products");
+    const result = await axios.get("https://scanner.initeum.tech/api/get-products");
     return result.data;
   }
 
   async getProductById(id) {
-    const result = await axios.post("/api/get-product-by-id", { id });
+    const result = await axios.post("https://scanner.initeum.tech/api/get-product-by-id", { id });
     return result.data;
   }
 }
