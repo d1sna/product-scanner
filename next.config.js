@@ -4,7 +4,7 @@ module.exports = {
   basePath: "",
   swcMinify: true,
   images: {
-    domains: ['f021-5-61-34-170.ngrok-free.app'], 
+    domains: ['scanner.initeum.tech'], 
   },
   async headers() {
     return [
