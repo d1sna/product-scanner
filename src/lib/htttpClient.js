@@ -1,3 +1,4 @@
+import { CapacitorHttp } from '@capacitor/core';
 import axios from "axios";
 
 class HttpClient {
@@ -7,7 +8,14 @@ class HttpClient {
     formData.set("name", name);
     formData.set("description", description);
     formData.set("price", price);
-    await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/create-product`, formData);
+    await CapacitorHttp.request({
+      method: 'POST',
+      url: `${process.env.NEXT_PUBLIC_URL}/api/create-product`,
+      data: formData,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+    });
   }
 
   async getProducts() {
@@ -17,7 +25,14 @@ class HttpClient {
   }
 
   async getProductById(id) {
-    const result = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/get-product-by-id`, { id });
+    const result = await CapacitorHttp.request({
+      method: 'POST',
+      url: `${process.env.NEXT_PUBLIC_URL}/api/get-product-by-id`,
+      data: {id},
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+    });
     return result.data;
   }
 }
